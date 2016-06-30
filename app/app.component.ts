@@ -1,22 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 
-import { RecipeListComponent } from './recipeList.component'
-
-console.log(RecipeListComponent);
+import { FoodHubComponent } from './food-hub.component'
 
 @Component({
   selector: 'food-sack',
   template: `
-    <h1>Food Sack</h1>
-    <recipe-list></recipe-list>
+  <h1>{{title}}</h1>
+  <router-outlet></router-outlet>
   `,
-  directives: [RecipeListComponent]
+  directives: [ROUTER_DIRECTIVES]
 })
 
-export class AppComponent implements OnInit {
-  title = 'Food Sack';
-  
-  ngOnInit(){
-    console.log("init main module")
-  }
+export class AppComponent {
+  title = 'Food Sack'
 }
