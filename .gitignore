@@ -1,6 +1,7 @@
 typings
 dist/**/*.js
 dist/**/*.map
+dist/**/*.css
 node_modules
 jspm_packages
 bower_components

@@ -2,12 +2,13 @@
   "name": "foodsack",
   "version": "1.0.0",
   "scripts": {
-    "start": "npm run tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
+    "start": "npm run tsc && npm run scss && concurrently \"npm run tsc:w\" \"npm run lite\" ",
     "lite": "lite-server",
     "postinstall": "typings install",
     "tsc": "tsc --outDir dist",
     "tsc:w": "tsc --outDir dist -w",
-    "typings": "typings"
+    "typings": "typings",
+    "scss": "node-sass -r app -o dest"
   },
   "license": "ISC",
   "dependencies": {
@@ -32,7 +33,8 @@
   "devDependencies": {
     "concurrently": "^2.0.0",
     "lite-server": "^2.2.0",
+    "node-sass": "^3.8.0",
     "typescript": "^1.8.10",
-    "typings":"^1.0.4"
+    "typings": "^1.0.4"
   }
 }
