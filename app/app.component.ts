@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 
-import { FoodHubComponent } from './food-hub.component'
+import { FoodHubComponent } from './food-hub/food-hub.component'
 
 @Component({
   selector: 'food-sack',

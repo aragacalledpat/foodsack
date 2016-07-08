@@ -1,6 +1,6 @@
 import { provideRouter, RouterConfig } from '@angular/router';
 import { AppComponent } from './app.component';
-import { FoodHubComponent } from './food-hub.component';
+import { FoodHubComponent } from './food-hub/food-hub.component';
 
 const routes: RouterConfig = [
   {

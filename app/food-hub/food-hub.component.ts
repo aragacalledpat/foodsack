@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { RecipeListComponent } from './recipeList.component'
+import { RecipeListComponent } from '../recipe-list/recipeList.component'
 
 @Component({
   selector: 'food-hub',
