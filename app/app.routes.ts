@@ -7,6 +7,11 @@ const routes: RouterConfig = [
     path: 'hub',
     component: FoodHubComponent,
     terminal: true
+  },
+  {
+    path: '',
+    redirectTo: '/hub',
+    pathMatch: 'full'
   }
 ];
 
