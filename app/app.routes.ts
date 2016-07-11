@@ -11,7 +11,7 @@ const routes: RouterConfig = [
   },
   {
     path: 'hub',
-    component: FoodHubComponent,
+    component: FoodDetailComponent,
     terminal: true
   },
   {

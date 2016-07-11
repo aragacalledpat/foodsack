@@ -6,9 +6,11 @@ import { Router, ROUTER_DIRECTIVES } from '@angular/router';
 @Component({
   selector: 'recipe-list',
   template: `
-    <ul>
-      <li *ngFor="let recipe of recipes" (click)="onSelect(recipe)">
-      {{recipe.name}}
+    <ul class="nav nav-pills nav-stacked">
+      <li *ngFor="let recipe of recipes" 
+          (click)="onSelect(recipe)"
+          >
+          <a>{{recipe.name}}</a>
       </li>
     </ul>
   `,

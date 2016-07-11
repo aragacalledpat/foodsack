@@ -7,10 +7,18 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'food-detail',
   template: `
-  <recipe-list></recipe-list>
-  <div *ngIf="recipe">
-  <span>id: {{recipe.id}}, </span><span>name: {{recipe.name}}</span>
-  <div class="btn btn-success">Update</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2">
+        <recipe-list></recipe-list>
+      </div>
+      <div class="col-md-10">
+        <div *ngIf="recipe">
+        <span>name: {{recipe.name}}</span>
+        <div class="btn btn-success">Update</div>
+        </div>
+      </div>
+    </div>
   </div>
   `,
     directives: [RecipeListComponent],
