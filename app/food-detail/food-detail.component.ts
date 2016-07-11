@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
   <recipe-list></recipe-list>
   <div *ngIf="recipe">
   <span>id: {{recipe.id}}, </span><span>name: {{recipe.name}}</span>
+  <div class="btn btn-success">Update</div>
   </div>
   `,
     directives: [RecipeListComponent],

@@ -15,4 +15,16 @@ export class RecipeService {
       if(RECIPES[i].id == id) { return RECIPES[i] }
     }
   }
+  
+  updateRecipe(recipe: Recipe)
+  {
+    for(var i = 0; i < RECIPES.length; i++)
+    {
+      if(RECIPES[i].id == recipe.id) 
+      { 
+         RECIPES[i] = recipe;
+      }
+    }
+  }
+  
 }
