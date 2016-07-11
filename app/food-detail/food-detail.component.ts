@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { RecipeListComponent } from '../recipe-list/recipeList.component';
-import { Recipe } from '../shared/recipe';
+import { Recipe } from '../shared/Recipe';
 import { RecipeService } from '../shared/recipe.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -14,8 +14,11 @@ import { ActivatedRoute } from '@angular/router';
       </div>
       <div class="col-md-10">
         <div *ngIf="recipe">
+        <!--
         <span>name: {{recipe.name}}</span>
         <div class="btn btn-success">Update</div>
+        -->
+        <h2>{{recipe.name}}</h2>
         </div>
       </div>
     </div>

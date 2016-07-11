@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { RECIPES } from './mock-recipes'
-import { Recipe } from './recipe'
+import { Recipe } from './Recipe'
 
 @Injectable()
 export class RecipeService {
