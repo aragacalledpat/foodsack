@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'food-detail',
   template: `
+  <recipe-list></recipe-list>
   <div *ngIf="recipe">
   <span>id: {{recipe.id}}, </span><span>name: {{recipe.name}}</span>
   </div>

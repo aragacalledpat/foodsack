@@ -4,4 +4,4 @@ dist/**/*.map
 dist/**/*.css
 node_modules
 jspm_packages
-bower_components
+bower_components                                                        
