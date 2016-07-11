@@ -33,6 +33,6 @@ export class RecipeListComponent implements OnInit {
   
   onSelect(recipe: Recipe){
     console.log(recipe);
-    this.router.navigate(['/hub', recipe.id]);
+    this.router.navigate(['/foodsack', recipe.id]);
   }
  }

@@ -6,16 +6,16 @@ import { FoodDetailComponent } from './food-detail/food-detail.component';
 const routes: RouterConfig = [
   {
     path: '',
-    redirectTo: '/hub',
+    redirectTo: '/foodsack',
     pathMatch: 'full'
   },
   {
-    path: 'hub',
+    path: 'foodsack',
     component: FoodDetailComponent,
     terminal: true
   },
   {
-    path: 'hub/:id',
+    path: 'foodsack/:id',
     component: FoodDetailComponent
   }
 ];
