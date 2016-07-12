@@ -5,37 +5,48 @@ export var RECIPES: Recipe[] = [
   { 
     id: 1, 
     name: "Vegetable Stock", 
-    ingredients: [], 
-    directions: []
+    ingredients: [{
+      ingredient : {name: "water"},
+      amount: 4,
+      measurement: Measurement.Cup
+      
+    },
+    {
+      ingredient : {name: "onion"},
+      amount: 3,
+      measurement: Measurement.None
+    }
+  ], 
+    directions: ["boil water"]
   },
   {
     id: 2, 
     name: "Risotto", 
     ingredients: [], 
-    directions: []
+    directions: ["chop stuff"]
   },
   {
     id: 3, 
     name: "Mussels Fra Diablo", 
     ingredients: [], 
-    directions: []
+    directions: ["clean mussels"]
   },
   {
     id: 4, 
     name: "Patatas Bravas", 
     ingredients: [], 
-    directions: []
+    directions: ["cut potatoes"]
   },
   {
     id: 5,
     name: "Eggplant Parm",
     ingredients: [], 
-    directions: []
+    directions: ["prepare eggplant"]
   },
   {
     id: 6, 
     name: "Hummus", 
     ingredients: [], 
-    directions: []
+    directions: ["chop garlic"]
   }
 ]

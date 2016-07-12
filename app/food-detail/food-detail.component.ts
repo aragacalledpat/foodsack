@@ -14,11 +14,21 @@ import { ActivatedRoute } from '@angular/router';
       </div>
       <div class="col-md-10">
         <div *ngIf="recipe">
-        <!--
-        <span>name: {{recipe.name}}</span>
-        <div class="btn btn-success">Update</div>
-        -->
-        <h2>{{recipe.name}}</h2>
+          <div class="container">
+            <div class="row">
+              <h2>{{recipe.name}}</h2>
+            </div>
+            <div class="row"> 
+              <div class="col-md-4">
+                <h4>Ingredients</h4>
+                <ul>
+                  <li *ngFor="let ingredientAmount of recipe.ingredients">
+                  {{ingredientAmount.ingredient.name}}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
