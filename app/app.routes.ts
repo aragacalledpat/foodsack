@@ -15,7 +15,7 @@ const routes: RouterConfig = [
     terminal: true
   },
   {
-    path: 'foodsack/:id',
+    path: 'foodsack/food/:id',
     component: FoodDetailComponent
   },
   {

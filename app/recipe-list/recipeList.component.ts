@@ -39,7 +39,7 @@ export class RecipeListComponent implements OnInit {
   }
   
   onSelect(recipe: Recipe){
-    this.router.navigate(['/foodsack', recipe.id]);
+    this.router.navigate(['/foodsack', "food", recipe.id]);
   }
   
   goToAdd()
