@@ -7,6 +7,12 @@ import { Router, ROUTER_DIRECTIVES } from '@angular/router';
   selector: 'recipe-list',
   template: `
     <ul class="nav nav-pills nav-stacked">
+      <li>
+        <a (click)="goToAdd()">
+          <span class="glyphicon glyphicon-plus"></span>
+          Add
+        </a>
+      </li>
       <li *ngFor="let recipe of recipes" 
           (click)="onSelect(recipe)"
           >
@@ -14,6 +20,7 @@ import { Router, ROUTER_DIRECTIVES } from '@angular/router';
       </li>
     </ul>
   `,
+    directives: [ROUTER_DIRECTIVES],
     providers: [RecipeService]
 })
 
@@ -32,7 +39,11 @@ export class RecipeListComponent implements OnInit {
   }
   
   onSelect(recipe: Recipe){
-    console.log(recipe);
     this.router.navigate(['/foodsack', recipe.id]);
+  }
+  
+  goToAdd()
+  {
+    this.router.navigate(['/foodsack', "add"]);
   }
  }

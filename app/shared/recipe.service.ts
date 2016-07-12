@@ -27,4 +27,9 @@ export class RecipeService {
     }
   }
   
+  createRecipe(recipe: Recipe)
+  {
+    RECIPES.push(recipe);
+  }
+  
 }
