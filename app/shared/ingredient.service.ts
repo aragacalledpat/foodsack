@@ -9,7 +9,7 @@ export class IngredientService {
     return INGREDIENTS;
   }
   
-  createIngredients(ingredient: Ingredient){
+  createIngredient(ingredient: Ingredient){
     INGREDIENTS.push(ingredient);
   }
 }
