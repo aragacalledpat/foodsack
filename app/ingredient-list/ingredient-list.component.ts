@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Ingredient } from '../shared/Ingredient';
 import { IngredientService } from '../shared/ingredient.service';
 
-Component({
+@Component({
   selector: 'ingredient-list',
   template: `
     <ul>
@@ -18,7 +18,7 @@ export class IngredientListComponent implements OnInit {
   ingredients: Ingredient[];
   
   constructor(private ingredientService: IngredientService){
-    
+
   }
   
   ngOnInit(){
