@@ -7,7 +7,6 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'food-detail',
   template: `
-  <div class="container">
     <div class="row">
       <div class="col-md-2">
         <recipe-list></recipe-list>
@@ -32,7 +31,6 @@ import { ActivatedRoute } from '@angular/router';
         </div>
       </div>
     </div>
-  </div>
   `,
     directives: [RecipeListComponent],
     providers: [RecipeService]

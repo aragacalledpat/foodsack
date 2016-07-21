@@ -39,7 +39,7 @@ export class IngredientListComponent implements OnInit {
   add()
   {
     this.ingredientService.createIngredient(this.newIngredient);
-    this.newIngredient = new Ingredient(;)
+    this.newIngredient = new Ingredient();
   }
   
 }
