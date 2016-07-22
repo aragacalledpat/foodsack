@@ -1,5 +1,7 @@
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Recipe } from '../shared/Recipe'
+import { RecipeService } from '../shared/recipe.service'
 
 @Component({
   selector: 'add-recipe',
@@ -15,7 +17,17 @@ import { Router } from '@angular/router';
           <form>
             <div class="form-group">
               <label for="name">Name</label>
-              <input type="text" class="form-control" required>
+              <input [(ngModel)]="recipe.name" type="text" class="form-control" name="name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="directions">Directions</label>
+              <textarea [(ngModel)]="recipe.directions" 
+                          class="form-control" 
+                          id="directions" 
+                          name="directions"
+                          rows="3">
+              </textarea>
             </div>
           </form>
         </div>
@@ -26,12 +38,17 @@ import { Router } from '@angular/router';
       </div>
     </div>
   </div>
-  `
+  `,
+  providers: [RecipeService]
 })
 
 export class AddRecipeComponent{
   
-  constructor(private router:Router){}
+  recipe:Recipe
+  
+  constructor(private router:Router, private recipeService:RecipeService){
+    this.recipe = new Recipe;
+  }
   
   goHome()
   {
