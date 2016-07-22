@@ -1,10 +1,10 @@
-/// <reference path="../../typings/globals/jquery/index.d.ts" />
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'add-recipe',
   template: `
-  <div #addModal class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div #addModal class="modal show" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -15,7 +15,7 @@ import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
           ...
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" (click)="goHome()">Close</button>
           <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
@@ -24,10 +24,13 @@ import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
   `
 })
 
-export class AddRecipeComponent implements AfterViewInit{
- @ViewChild('addModal') modal:ElementRef;
-   
-  ngAfterViewInit(){
-     $(this.modal.nativeElement).modal('show');
+export class AddRecipeComponent{
+  
+  constructor(private router:Router){}
+  
+  goHome()
+  {
+    this.router.navigate(['foodsack']);
   }
+
 }
