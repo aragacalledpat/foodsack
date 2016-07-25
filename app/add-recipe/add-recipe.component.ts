@@ -57,7 +57,8 @@ export class AddRecipeComponent{
   
   submit()
   {
-    console.log(this.recipe);
+    this.recipeService.createRecipe(this.recipe);
+    this.goHome();
   }
 
 }

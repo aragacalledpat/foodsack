@@ -29,6 +29,17 @@ export class RecipeService {
   
   createRecipe(recipe: Recipe)
   {
+    var highestId = 0;
+    for(var i = 0; i < RECIPES.length; i++)
+    {
+      if(RECIPES[i].id > highestId) 
+      { 
+         highestId = RECIPES[i].id;
+      }
+    }
+    
+    
+    recipe.id = highestId + 1;
     RECIPES.push(recipe);
   }
   
