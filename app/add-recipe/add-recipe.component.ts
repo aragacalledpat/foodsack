@@ -29,6 +29,44 @@ import { RecipeService } from '../shared/recipe.service'
                           rows="3">
               </textarea>
             </div>
+            
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-4">
+                  <ul>
+                    <li>4 Cups Milk</li>
+                    <li>3 Cups Water</li>
+                    <li>4 Cups Milk</li>
+                    <li>3 Cups Water</li>
+                  </ul>
+                </div>
+                <div class="col-md-2">
+                  <label for="number">#</label>
+                  <input type="number" name="number" class="form-control">
+                </div>
+                <div class="col-md-2">
+                  <label for="unit">Unit</label>
+                  <select name="unit">
+                    <option>Cups</option>
+                    <option>Tablespoon</option>
+                    <option>Things</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label for="newIngredient">Ingredient</label>
+                  <select name="unit">
+                    <option>Onion</option>
+                    <option>Carrots</option>
+                    <option>Celery</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+              <div class="col-md-12">
+                            <button class="btn btn-default pull-right">Add Ingredient</button>
+              </div>
+              </div>
+            </div>
           </form>
         </div>
         <div class="modal-footer">
