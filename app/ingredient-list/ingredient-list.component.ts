@@ -5,14 +5,18 @@ import { IngredientService } from '../shared/ingredient.service';
 @Component({
   selector: 'ingredient-list',
   template: `
-    <ul>
-      <li *ngFor="let ingredient of ingredients">
-      <a>{{ingredient.name}}</a>
-      </li>
-    </ul>
-    <div>
-    <input [(ngModel)]="newIngredient.name" type="text" class="form-control">
-    <div class="btn btn-success" (click)="add()">Add Ingredient</div>
+    <div class="row">
+      <div class="col-md-4">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let ingredient of ingredients">
+          <a>{{ingredient.name}}</a>
+          </li>
+        </ul>
+        <div>
+          <input [(ngModel)]="newIngredient.name" type="text" class="form-control">
+          <div class="btn btn-success" (click)="add()">Add Ingredient</div>
+        </div>
+      </div>
     </div>
     
   `,

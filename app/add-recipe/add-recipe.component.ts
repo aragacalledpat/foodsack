@@ -33,7 +33,7 @@ import { RecipeService } from '../shared/recipe.service'
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" (click)="goHome()">Close</button>
-          <button type="submit" class="btn btn-primary">Add Recipe</button>
+          <button type="submit" class="btn btn-primary" (click)="submit()">Add Recipe</button>
         </div>
       </div>
     </div>
@@ -53,6 +53,11 @@ export class AddRecipeComponent{
   goHome()
   {
     this.router.navigate(['foodsack']);
+  }
+  
+  submit()
+  {
+    console.log(this.recipe);
   }
 
 }
