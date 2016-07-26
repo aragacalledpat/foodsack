@@ -1,13 +1,15 @@
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Recipe } from '../shared/Recipe'
+import { Ingredient } from '../shared/Ingredient'
 import { RecipeService } from '../shared/recipe.service'
+import { IngredientService } from '../shared/ingredient.service'
 
 @Component({
   selector: 'add-recipe',
   template: `
   <div #addModal class="modal show" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document" style="width:800px">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -32,7 +34,7 @@ import { RecipeService } from '../shared/recipe.service'
             
             <div class="form-group">
               <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                   <ul>
                     <li>4 Cups Milk</li>
                     <li>3 Cups Water</li>
@@ -40,24 +42,24 @@ import { RecipeService } from '../shared/recipe.service'
                     <li>3 Cups Water</li>
                   </ul>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                   <label for="number">#</label>
                   <input type="number" name="number" class="form-control">
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                   <label for="unit">Unit</label>
-                  <select name="unit">
+                  <select name="unit" class="form-control">
                     <option>Cups</option>
                     <option>Tablespoon</option>
                     <option>Things</option>
                   </select>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                   <label for="newIngredient">Ingredient</label>
-                  <select name="unit">
-                    <option>Onion</option>
-                    <option>Carrots</option>
-                    <option>Celery</option>
+                  <select name="newIngredient" class="form-control">
+                    <option *ngFor="let ingredient of ingredients">
+                    {{ingredient.name}}
+                    </option>
                   </select>
                 </div>
               </div>
@@ -77,15 +79,20 @@ import { RecipeService } from '../shared/recipe.service'
     </div>
   </div>
   `,
-  providers: [RecipeService]
+  providers: [RecipeService, IngredientService]
 })
 
 export class AddRecipeComponent{
   
   recipe:Recipe
+  ingredients: Ingredient[]
   
-  constructor(private router:Router, private recipeService:RecipeService){
+  constructor(private router:Router, 
+    private recipeService:RecipeService, 
+    private ingredientService:IngredientService)
+    {
     this.recipe = new Recipe;
+    this.ingredients = this.ingredientService.getIngredients();
   }
   
   goHome()
