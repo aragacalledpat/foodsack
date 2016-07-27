@@ -27,6 +27,9 @@ import { ActivatedRoute } from '@angular/router';
                 </ul>
               </div>
             </div>
+            <div class="row">
+              <button class="btn btn-success">Edit</button>
+            </div>
           </div>
         </div>
       </div>

@@ -37,14 +37,15 @@ import { MeasurementService } from '../shared/measurement.service'
 
             <div class="form-group">
               <div class="row">
-                <div class="col-md-3">
-                  <ul>
-                    <li *ngFor="let ingredientAmount of recipe.ingredients">
-                    {{ingredientAmount.amount}} {{ingredientAmount.measurement.name}} {{ingredientAmount.ingredient.name}}
+                <div class="col-md-4">
+                  <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let ingredientAmount of recipe.ingredients">
+                    <span>{{ingredientAmount.amount}} {{ingredientAmount.measurement.name}} {{ingredientAmount.ingredient.name}}</span>
+                     <a style="cursor: pointer;" (click)="removeIngredient(ingredientAmount)"><span class="glyphicon glyphicon-minus pull-right" aria-hidden="true"></span></a>
                     </li>
                   </ul>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                   <label for="number">#</label>
                   <input type="number" name="number" [(ngModel)]="ingredientAmount.amount" class="form-control">
                 </div>
@@ -111,6 +112,14 @@ export class AddRecipeComponent{
     console.log(this.recipe);
     this.recipe.ingredients.push(this.ingredientAmount);
     this.ingredientAmount = new IngredientAmount();
+  }
+  
+  removeIngredient(ingredient:IngredientAmount)
+  {
+    for(var i = 0; i <this.recipe.ingredients.length;i++)
+    {
+      //if(ingredient.)
+    }
   }
 
   submit()
