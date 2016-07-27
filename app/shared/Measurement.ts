@@ -1,6 +1,4 @@
-export enum Measurement {
-  None,
-  Teaspoon, 
-  Tablespoon, 
-  Cup
+export class Measurement {
+  id:number
+  name:string
 }

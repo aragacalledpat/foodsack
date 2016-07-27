@@ -4,6 +4,8 @@ import { Recipe } from '../shared/Recipe'
 import { Ingredient } from '../shared/Ingredient'
 import { RecipeService } from '../shared/recipe.service'
 import { IngredientService } from '../shared/ingredient.service'
+import { Measurement } from '../shared/measurement'
+import { MeasurementService } from '../shared/measurement.service'
 
 @Component({
   selector: 'add-recipe',
@@ -21,17 +23,17 @@ import { IngredientService } from '../shared/ingredient.service'
               <label for="name">Name</label>
               <input [(ngModel)]="recipe.name" type="text" class="form-control" name="name" required>
             </div>
-            
+
             <div class="form-group">
               <label for="directions">Directions</label>
-              <textarea [(ngModel)]="recipe.directions" 
-                          class="form-control" 
-                          id="directions" 
+              <textarea [(ngModel)]="recipe.directions"
+                          class="form-control"
+                          id="directions"
                           name="directions"
                           rows="3">
               </textarea>
             </div>
-            
+
             <div class="form-group">
               <div class="row">
                 <div class="col-md-3">
@@ -49,9 +51,7 @@ import { IngredientService } from '../shared/ingredient.service'
                 <div class="col-md-3">
                   <label for="unit">Unit</label>
                   <select name="unit" class="form-control">
-                    <option>Cups</option>
-                    <option>Tablespoon</option>
-                    <option>Things</option>
+                    <option *ngFor="let measurement of measurements">{{measurement.name}}</option>
                   </select>
                 </div>
                 <div class="col-md-3">
@@ -79,27 +79,30 @@ import { IngredientService } from '../shared/ingredient.service'
     </div>
   </div>
   `,
-  providers: [RecipeService, IngredientService]
+  providers: [RecipeService, IngredientService, MeasurementService]
 })
 
 export class AddRecipeComponent{
-  
+
   recipe:Recipe
   ingredients: Ingredient[]
-  
-  constructor(private router:Router, 
-    private recipeService:RecipeService, 
-    private ingredientService:IngredientService)
+  measurements:Measurement[];
+
+  constructor(private router:Router,
+    private recipeService:RecipeService,
+    private ingredientService:IngredientService,
+    private measurementService:MeasurementService)
     {
     this.recipe = new Recipe;
     this.ingredients = this.ingredientService.getIngredients();
+    this.measurements = this.measurementService.getMeasurements();
   }
-  
+
   goHome()
   {
     this.router.navigate(['foodsack']);
   }
-  
+
   submit()
   {
     this.recipeService.createRecipe(this.recipe);
