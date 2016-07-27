@@ -2,9 +2,10 @@ import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Recipe } from '../shared/Recipe'
 import { Ingredient } from '../shared/Ingredient'
+import { IngredientAmount } from '../shared/IngredientAmount'
 import { RecipeService } from '../shared/recipe.service'
 import { IngredientService } from '../shared/ingredient.service'
-import { Measurement } from '../shared/measurement'
+import { Measurement } from '../shared/Measurement'
 import { MeasurementService } from '../shared/measurement.service'
 
 @Component({
@@ -21,7 +22,7 @@ import { MeasurementService } from '../shared/measurement.service'
           <form>
             <div class="form-group">
               <label for="name">Name</label>
-              <input [(ngModel)]="recipe.name" type="text" class="form-control" name="name" required>
+              <input [(ngModel)]="recipe.name" type="text" class="form-control" name="name">
             </div>
 
             <div class="form-group">
@@ -38,35 +39,35 @@ import { MeasurementService } from '../shared/measurement.service'
               <div class="row">
                 <div class="col-md-3">
                   <ul>
-                    <li>4 Cups Milk</li>
-                    <li>3 Cups Water</li>
-                    <li>4 Cups Milk</li>
-                    <li>3 Cups Water</li>
+                    <li *ngFor="let ingredientAmount of recipe.ingredients">
+                    {{ingredientAmount.amount}} {{ingredientAmount.measurement.name}} {{ingredientAmount.ingredient.name}}
+                    </li>
                   </ul>
                 </div>
                 <div class="col-md-3">
                   <label for="number">#</label>
-                  <input type="number" name="number" class="form-control">
+                  <input type="number" name="number" [(ngModel)]="ingredientAmount.amount" class="form-control">
                 </div>
                 <div class="col-md-3">
                   <label for="unit">Unit</label>
-                  <select name="unit" class="form-control">
-                    <option *ngFor="let measurement of measurements">{{measurement.name}}</option>
+                  <select name="unit" class="form-control" [(ngModel)]="ingredientAmount.measurement">
+                    <option *ngFor="let measurement of measurements" [ngValue]="measurement">{{measurement.name}}</option>
                   </select>
                 </div>
                 <div class="col-md-3">
                   <label for="newIngredient">Ingredient</label>
-                  <select name="newIngredient" class="form-control">
-                    <option *ngFor="let ingredient of ingredients">
+                  <select name="newIngredient" class="form-control" [(ngModel)]="ingredientAmount.ingredient">
+                    <option *ngFor="let ingredient of ingredients"
+                            [ngValue]="ingredient">
                     {{ingredient.name}}
                     </option>
                   </select>
                 </div>
               </div>
               <div class="row">
-              <div class="col-md-12">
-                            <button class="btn btn-default pull-right">Add Ingredient</button>
-              </div>
+                <div class="col-md-12">
+                    <button class="btn btn-default pull-right" (click)="addIngredient()">Add Ingredient</button>
+                </div>
               </div>
             </div>
           </form>
@@ -87,13 +88,15 @@ export class AddRecipeComponent{
   recipe:Recipe
   ingredients: Ingredient[]
   measurements:Measurement[];
+  ingredientAmount:IngredientAmount
 
   constructor(private router:Router,
     private recipeService:RecipeService,
     private ingredientService:IngredientService,
     private measurementService:MeasurementService)
     {
-    this.recipe = new Recipe;
+    this.recipe = new Recipe();
+    this.ingredientAmount = new IngredientAmount();
     this.ingredients = this.ingredientService.getIngredients();
     this.measurements = this.measurementService.getMeasurements();
   }
@@ -101,6 +104,13 @@ export class AddRecipeComponent{
   goHome()
   {
     this.router.navigate(['foodsack']);
+  }
+
+  addIngredient()
+  {
+    console.log(this.recipe);
+    this.recipe.ingredients.push(this.ingredientAmount);
+    this.ingredientAmount = new IngredientAmount();
   }
 
   submit()

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Measurement } from './measurement'
+import { Measurement } from './Measurement'
 
 @Injectable()
 export class MeasurementService {
