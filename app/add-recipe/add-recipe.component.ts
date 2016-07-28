@@ -113,12 +113,15 @@ export class AddRecipeComponent{
     this.recipe.ingredients.push(this.ingredientAmount);
     this.ingredientAmount = new IngredientAmount();
   }
-  
+
   removeIngredient(ingredient:IngredientAmount)
   {
     for(var i = 0; i <this.recipe.ingredients.length;i++)
     {
-      //if(ingredient.)
+      if(ingredient.ingredient.name == this.recipe.ingredients[i].ingredient.name)
+      {
+        this.recipe.ingredients.splice(i,1);
+      }
     }
   }
 
