@@ -102,7 +102,7 @@ export class AddRecipeComponent {
     this.ingredientAmount = new IngredientAmount();
     this.ingredients = this.ingredientService.getIngredients();
     this.measurements = this.measurementService.getMeasurements();
-    this.addMode = (this.route.snapshot.params.id == null);
+    this.addMode = (!this.route.snapshot.params.hasOwnProperty('id'));
 
     if(!this.addMode)
     {
@@ -113,7 +113,7 @@ export class AddRecipeComponent {
 
   loadEditRecipe()
   {
-    var fromService = this.recipeService.getRecipe(this.route.snapshot.params.id);
+    var fromService = this.recipeService.getRecipe(this.route.snapshot.params["id"]);
 
     //stupid hack to make a deep copy.
     this.recipe = JSON.parse(JSON.stringify(fromService));

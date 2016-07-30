@@ -13,7 +13,7 @@ import { IngredientService } from '../shared/ingredient.service';
           </li>
         </ul>
         <div>
-          <input [(ngModel)]="newIngredient.name" type="text" class="form-control">
+          <input [(ngModel)]="newIngredient.name" (keyup.enter)="add()" type="text" class="form-control">
           <div class="btn btn-success" (click)="add()">Add Ingredient</div>
         </div>
       </div>
@@ -22,7 +22,7 @@ import { IngredientService } from '../shared/ingredient.service';
       <div class="col-md-4">
       </div>
     </div>
-    
+
   `,
     providers: [IngredientService]
 })
@@ -30,24 +30,24 @@ import { IngredientService } from '../shared/ingredient.service';
 export class IngredientListComponent implements OnInit {
   ingredients: Ingredient[];
   newIngredient: Ingredient;
-  
+
   constructor(private ingredientService: IngredientService){
 
   }
-  
+
   ngOnInit(){
     this.getIngredients();
     this.newIngredient = new Ingredient();
   }
-  
+
   getIngredients(){
     this.ingredients = this.ingredientService.getIngredients();
   }
-  
+
   add()
   {
     this.ingredientService.createIngredient(this.newIngredient);
     this.newIngredient = new Ingredient();
   }
-  
+
 }
