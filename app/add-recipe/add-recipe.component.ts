@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Recipe } from '../shared/Recipe'
 import { Ingredient } from '../shared/Ingredient'
 import { IngredientAmount } from '../shared/IngredientAmount'
@@ -75,7 +75,7 @@ import { MeasurementService } from '../shared/measurement.service'
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" (click)="goHome()">Close</button>
-          <button type="submit" class="btn btn-primary" (click)="submit()">Add Recipe</button>
+          <button type="submit" class="btn btn-primary" (click)="submit()">{{addMode ? 'Add' : 'Edit'}} Recipe</button>
         </div>
       </div>
     </div>
@@ -84,7 +84,7 @@ import { MeasurementService } from '../shared/measurement.service'
   providers: [RecipeService, IngredientService, MeasurementService]
 })
 
-export class AddRecipeComponent{
+export class AddRecipeComponent {
 
   recipe:Recipe
   ingredients: Ingredient[]
@@ -95,13 +95,14 @@ export class AddRecipeComponent{
   constructor(private router:Router,
     private recipeService:RecipeService,
     private ingredientService:IngredientService,
-    private measurementService:MeasurementService)
+    private measurementService:MeasurementService,
+    private route:ActivatedRoute)
     {
     this.recipe = new Recipe();
     this.ingredientAmount = new IngredientAmount();
     this.ingredients = this.ingredientService.getIngredients();
     this.measurements = this.measurementService.getMeasurements();
-    this.addMode = (this.router.url == "/foodsack/add")
+    this.addMode = (this.route.snapshot.params.id == null);
 
     if(!this.addMode)
     {
@@ -112,7 +113,10 @@ export class AddRecipeComponent{
 
   loadEditRecipe()
   {
-    
+    var fromService = this.recipeService.getRecipe(this.route.snapshot.params.id);
+
+    //stupid hack to make a deep copy.
+    this.recipe = JSON.parse(JSON.stringify(fromService));
   }
 
   goHome()
@@ -139,7 +143,15 @@ export class AddRecipeComponent{
 
   submit()
   {
-    this.recipeService.createRecipe(this.recipe);
+
+    if(this.addMode)
+    {
+      this.recipeService.createRecipe(this.recipe);
+    }
+    else
+    {
+        this.recipeService.updateRecipe(this.recipe);
+    }
     this.goHome();
   }
 
