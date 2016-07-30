@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { RecipeListComponent } from '../recipe-list/recipeList.component';
 import { Recipe } from '../shared/Recipe';
 import { RecipeService } from '../shared/recipe.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router ,ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
   selector: 'food-detail',
@@ -17,7 +17,7 @@ import { ActivatedRoute } from '@angular/router';
             <div class="row">
               <h2>{{recipe.name}}</h2>
             </div>
-            <div class="row"> 
+            <div class="row">
               <div class="col-md-4">
                 <h4>Ingredients</h4>
                 <ul>
@@ -28,34 +28,40 @@ import { ActivatedRoute } from '@angular/router';
               </div>
             </div>
             <div class="row">
-              <button class="btn btn-success">Edit</button>
+              <button class="btn btn-success" (click)="edit()">Edit</button>
             </div>
           </div>
         </div>
       </div>
     </div>
   `,
-    directives: [RecipeListComponent],
+    directives: [RecipeListComponent,ROUTER_DIRECTIVES],
     providers: [RecipeService]
 })
 
 export class FoodDetailComponent {
   sub: any;
   recipe: Recipe;
-  
+  id:number;
+
   constructor(private recipeService: RecipeService,
-              private route: ActivatedRoute)
+              private route: ActivatedRoute,
+            private router: Router)
   {}
-  
+
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      let id = +params['id'];
-      this.recipe = this.recipeService.getRecipe(id);
+      this.id = +params['id'];
+      this.recipe = this.recipeService.getRecipe(this.id);
     });
   }
-  
+
   ngOnDestroy() {
   this.sub.unsubscribe();
 }
-  
+  edit()
+  {
+    this.router.navigate(['foodsack','food',this.id,'edit']);
+  }
+
 }

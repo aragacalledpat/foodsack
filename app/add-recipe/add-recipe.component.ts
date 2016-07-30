@@ -89,7 +89,8 @@ export class AddRecipeComponent{
   recipe:Recipe
   ingredients: Ingredient[]
   measurements:Measurement[];
-  ingredientAmount:IngredientAmount
+  ingredientAmount:IngredientAmount;
+  addMode:boolean;
 
   constructor(private router:Router,
     private recipeService:RecipeService,
@@ -100,6 +101,18 @@ export class AddRecipeComponent{
     this.ingredientAmount = new IngredientAmount();
     this.ingredients = this.ingredientService.getIngredients();
     this.measurements = this.measurementService.getMeasurements();
+    this.addMode = (this.router.url == "/foodsack/add")
+
+    if(!this.addMode)
+    {
+      this.loadEditRecipe();
+    }
+
+  }
+
+  loadEditRecipe()
+  {
+    
   }
 
   goHome()
@@ -109,7 +122,6 @@ export class AddRecipeComponent{
 
   addIngredient()
   {
-    console.log(this.recipe);
     this.recipe.ingredients.push(this.ingredientAmount);
     this.ingredientAmount = new IngredientAmount();
   }

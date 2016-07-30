@@ -20,6 +20,10 @@ const routes: RouterConfig = [
     component: FoodDetailComponent
   },
   {
+    path: 'foodsack/food/:id/edit',
+    component: AddRecipeComponent
+  },
+  {
     path: 'foodsack/add',
     component: AddRecipeComponent
   },
