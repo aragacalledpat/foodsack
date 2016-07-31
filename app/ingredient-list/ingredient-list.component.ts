@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Ingredient } from '../shared/Ingredient';
 import { IngredientService } from '../shared/ingredient.service';
+import { NgForm }    from '@angular/forms';
 
 @Component({
   selector: 'ingredient-list',
@@ -13,8 +14,10 @@ import { IngredientService } from '../shared/ingredient.service';
           </li>
         </ul>
         <div>
-          <input [(ngModel)]="newIngredient.name" (keyup.enter)="add()" type="text" class="form-control">
-          <div class="btn btn-success" (click)="add()">Add Ingredient</div>
+          <form #newIngredientForm="ngForm">
+          <input name="name" [(ngModel)]="newIngredient.name" (keyup.enter)="add()" type="text" class="form-control" required>
+          <button class="btn btn-success" (click)="add()" [disabled]="!newIngredientForm.form.valid">Add Ingredient</button>
+          </form>
         </div>
       </div>
     </div>
@@ -31,8 +34,9 @@ export class IngredientListComponent implements OnInit {
   ingredients: Ingredient[];
   newIngredient: Ingredient;
 
-  constructor(private ingredientService: IngredientService){
 
+  constructor(private ingredientService: IngredientService){
+    this.newIngredient = new Ingredient();
   }
 
   ngOnInit(){
