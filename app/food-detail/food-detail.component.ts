@@ -29,6 +29,7 @@ import { ActivatedRoute, Router ,ROUTER_DIRECTIVES } from '@angular/router';
             </div>
             <div class="row">
               <button class="btn btn-success" (click)="edit()">Edit</button>
+              <button class="btn btn-default" (click)="delete()">Delete</button>
             </div>
           </div>
         </div>
@@ -62,6 +63,12 @@ export class FoodDetailComponent {
   edit()
   {
     this.router.navigate(['foodsack','food',this.id,'edit']);
+  }
+
+  delete()
+  {
+    this.recipeService.deleteRecipe(this.recipe);
+    this.router.navigate(['foodsack']);
   }
 
 }
