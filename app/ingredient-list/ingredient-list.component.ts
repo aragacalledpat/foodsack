@@ -11,6 +11,7 @@ import { NgForm }    from '@angular/forms';
         <ul class="list-group">
           <li class="list-group-item" *ngFor="let ingredient of ingredients">
           <a>{{ingredient.name}}</a>
+          <a style="cursor: pointer;" (click)="deleteIngredient(ingredient)"><span class="glyphicon glyphicon-minus pull-right" aria-hidden="true"></span></a>
           </li>
         </ul>
         <div>
@@ -52,6 +53,11 @@ export class IngredientListComponent implements OnInit {
   {
     this.ingredientService.createIngredient(this.newIngredient);
     this.newIngredient = new Ingredient();
+  }
+
+  deleteIngredient(ingredient:Ingredient)
+  {
+    this.ingredientService.deleteIngredient(ingredient);
   }
 
 }

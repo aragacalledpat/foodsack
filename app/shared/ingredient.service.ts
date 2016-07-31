@@ -8,8 +8,18 @@ export class IngredientService {
   getIngredients(){
     return INGREDIENTS;
   }
-  
+
   createIngredient(ingredient: Ingredient){
     INGREDIENTS.push(ingredient);
+  }
+
+  deleteIngredient(ingredient: Ingredient){
+    for(var i = 0; i <INGREDIENTS.length;i++)
+    {
+      if(INGREDIENTS[i].name == ingredient.name)
+      {
+        INGREDIENTS.splice(i,1);
+      }
+    }
   }
 }
