@@ -19,13 +19,21 @@ import { ActivatedRoute, Router ,ROUTER_DIRECTIVES } from '@angular/router';
             </div>
             <div class="row">
               <div class="col-md-4">
-                <h4>Ingredients</h4>
-                <ul>
-                  <li *ngFor="let ingredientAmount of recipe.ingredients">
-                  {{ingredientAmount.ingredient.name}}
+                <h3>Ingredients</h3>
+                <ul class="list-group">
+                  <li class="list-group-item" 
+                      *ngFor="let ingredientAmount of recipe.ingredients">
+                  {{ingredientAmount.amount}} {{ingredientAmount.measurement.name}} {{ingredientAmount.ingredient.name}}
                   </li>
                 </ul>
               </div>
+              <div class="col-md-4">
+              <h3>Directions</h3>
+              {{recipe.directions}}
+              </div>
+            </div>
+            <div class="row">
+              
             </div>
             <div class="row">
               <button class="btn btn-success" (click)="edit()">Edit</button>

@@ -34,7 +34,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
-  <div class="container">
+  <div class="container-fluid">
     <router-outlet></router-outlet>
   </div>
   `,
