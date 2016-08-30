@@ -34,6 +34,17 @@ import { MeasurementService } from '../shared/measurement.service'
                           rows="3">
               </textarea>
             </div>
+            
+            <div class="form-group">
+              <label for="url">Url</label>
+              <input [(ngModel)]="recipe.url"
+                          class="form-control"
+                          id="directions"
+                          name="directions"
+                          rows="3"
+                          type="text"
+               />
+            </div>
 
             <div class="form-group">
               <div class="row">

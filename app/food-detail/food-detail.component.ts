@@ -31,6 +31,10 @@ import { ActivatedRoute, Router ,ROUTER_DIRECTIVES } from '@angular/router';
               <h3>Directions</h3>
               {{recipe.directions}}
               </div>
+              <div class="col-md-4">
+              <h3>URL</h3>
+              {{recipe.url}}
+              </div>
             </div>
             <div class="row">
               
