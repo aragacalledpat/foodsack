@@ -1,12 +1,14 @@
 'use strict';
 
 const Hapi = require('hapi');
+const IngredientService = require('./services/IngredientService');
+const RecipeService = require('./services/RecipeService');
 
 // Create a server with a host and port
 const server = new Hapi.Server();
 server.connection({ 
     host: 'localhost', 
-    port: 8000 
+    port: 3000 
 });
 
 // Add the route
@@ -19,22 +21,23 @@ server.route({
     }
 });
 
+//get ingredients
 server.route({
     method: 'GET',
     path:'/api/ingredients', 
     handler: function (request, reply) {
       
-        var ingredients = {ingredients: [
-          {id: 1, name: "onion"},
-          {id: 2, name: "water"},
-          {id: 3, name: "carrot"},
-          {id: 4, name: "celery"},
-          {id: 5, name: "garlic"}
-        ]}
+        var ingredients = IngredientService.getIngredients();
 
         return reply(ingredients);
     }
 });
+
+//create ingredient
+
+//delete ingredient
+
+
 
 // Start the server
 server.start((err) => {
