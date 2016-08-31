@@ -15,16 +15,6 @@ server.connection({
     port: 3000 
 });
 
-// Root of api
-server.route({
-    method: 'GET',
-    path:'/api', 
-    handler: function (request, reply) {
-
-        return reply('hello foodsack');
-    }
-});
-
 for(let route of allRoutes)
 {
   server.route(route);
