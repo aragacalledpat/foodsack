@@ -10,4 +10,4 @@ MongoClient.connect(url, function(err, db) {
   db.close();
 });
 
-module.exports = {};
+module.exports = MongoClient;
