@@ -1,7 +1,8 @@
 const RecipeService = require('./services/RecipeService');
 const apiPath = '/api/recipes';
 
-const RecipeRoutes = [{
+const RecipeRoutes = [
+  {
     method: 'GET',
     path:apiPath, 
     handler: function (request, reply) {
@@ -10,6 +11,28 @@ const RecipeRoutes = [{
 
         return reply(recipes);
     }
-}]
+  },
+    {
+        method: 'POST',
+        path: apiPath,
+        handler: function (request, reply){
+          return reply({message : "created recipe!"});
+        }
+    },
+    {
+        method: 'PUT',
+        path: apiPath,
+        handler: function (request, reply){
+          return reply({message : "updated recipe!"});
+        }
+    },
+    {
+        method: 'DELETE',
+        path: apiPath,
+        handler: function (request, reply){
+          return reply({message : "deleted recipe!"});
+        }
+    }
+]
 
 module.exports = RecipeRoutes;
