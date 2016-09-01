@@ -1,16 +1,19 @@
-const FoodSackMongo = require('../dataAccess/mongo');
+const IngredientOps = require('../dataAccess/IngredientOps');
+const q = require('q');
 
 class IngredientService {
   
   getIngredients()
   {
-    return {ingredients: [
-      {id: 1, name: "bloop"},
-      {id: 2, name: "water"},
-      {id: 3, name: "carrot"},
-      {id: 4, name: "celery"},
-      {id: 5, name: "garlic"}
-    ]}
+    var deferred = q.defer()
+    
+    IngredientOps.getIngredients().then(function(ingredients){
+      console.log("and we back");
+      console.log(ingredients)
+      deferred.resolve(ingredients);
+    })
+    
+    return deferred.promise;
   }
 }
 

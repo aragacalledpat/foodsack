@@ -9,9 +9,11 @@ const IngredientRoutes = [
       path: apiPath, 
       handler: function (request, reply) {
         
-          var ingredients = IngredientService.getIngredients();
+          var ingredients = IngredientService.getIngredients().then(function(data){
+              return reply(data);
+          });
 
-          return reply(ingredients);
+
       }
   },
   {
