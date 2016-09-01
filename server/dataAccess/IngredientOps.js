@@ -24,6 +24,43 @@ class IngredientOps {
     
     return deferred.promise;
   }
+  
+  insertIngredient(ingredient)
+  {
+    var deferred = q.defer();
+    
+    MongoClient.connect(url, function(err, db) {
+      assert.equal(null, err);
+      console.log("Connected successfully to server");
+      var collection = db.collection('ingredients');
+
+      collection.insertOne(ingredient, function(err, result){
+        deferred.resolve(result);
+      })
+
+      db.close();
+    });
+    
+    return deferred.promise;
+  }
+  
+  deleteIngredient(id)
+  {
+    var deferred = q.defer();
+    
+    MongoClient.connect(url, function(err, db) {
+      assert.equal(null, err);
+      console.log("Connected successfully to server");
+      var collection = db.collection('ingredients');
+
+
+
+      db.close();
+    });
+    
+    return deferred.promise;
+  }
+  
 }
 
 module.exports = new IngredientOps();

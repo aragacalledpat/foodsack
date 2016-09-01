@@ -9,7 +9,7 @@ const IngredientRoutes = [
       path: apiPath, 
       handler: function (request, reply) {
         
-          var ingredients = IngredientService.getIngredients().then(function(data){
+          IngredientService.getIngredients().then(function(data){
               return reply(data);
           });
 
@@ -20,7 +20,12 @@ const IngredientRoutes = [
       method: 'POST',
       path: apiPath,
       handler: function (request, reply){
-        return reply({message : "created ingredient!"});
+        console.log("omg posting!")
+        console.log(request.payload)
+        IngredientService.createIngredient(request.payload).then(function(data){
+          return reply(data);
+        })
+        
       }
   },
   {

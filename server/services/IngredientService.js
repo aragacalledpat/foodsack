@@ -5,12 +5,19 @@ class IngredientService {
   
   getIngredients()
   {
-    var deferred = q.defer()
-    
+    var deferred = q.defer()    
     IngredientOps.getIngredients().then(function(ingredients){
-      console.log("and we back");
-      console.log(ingredients)
       deferred.resolve(ingredients);
+    })
+    
+    return deferred.promise;
+  }
+  
+  createIngredient(ingredient)
+  {
+    var deferred = q.defer()    
+    IngredientOps.insertIngredient(ingredient).then(function(result){
+      deferred.resolve(result);
     })
     
     return deferred.promise;
