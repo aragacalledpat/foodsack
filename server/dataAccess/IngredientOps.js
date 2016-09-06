@@ -54,7 +54,7 @@ class IngredientOps {
       console.log("Connected successfully to server");
       var collection = db.collection('ingredients');
 
-      collection.deleteMany({ "_id" : new mongodb.ObjectID(id)},function(err, results){
+      collection.deleteOne({ "_id" : new mongodb.ObjectID(id)},function(err, results){
         console.log("deleted " + results);
         deferred.resolve(results);
       })

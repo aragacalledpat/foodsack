@@ -20,8 +20,6 @@ const IngredientRoutes = [
       method: 'POST',
       path: apiPath,
       handler: function (request, reply){
-        console.log("omg posting!")
-        console.log(request.payload)
         IngredientService.createIngredient(request.payload).then(function(data){
           return reply(data);
         })
