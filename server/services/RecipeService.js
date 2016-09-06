@@ -22,6 +22,16 @@ class RecipeService {
     return deferred.promise;
   }
   
+  updateRecipe(recipe)
+  {
+    var deferred = q.defer()    
+    RecipeOps.updateRecipe(recipe).then(function(result){
+      deferred.resolve(result);
+    })
+    
+    return deferred.promise;
+  }
+  
   deleteRecipe(id)
   {
     var deferred = q.defer()    

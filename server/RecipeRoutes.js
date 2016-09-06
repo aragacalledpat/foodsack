@@ -26,7 +26,9 @@ const RecipeRoutes = [
       method: 'PUT',
       path: apiPath,
       handler: function (request, reply){
-        return reply({message : "updated recipe!"});
+        RecipeService.updateRecipe(request.payload).then(function(data){
+          return reply(data);
+        })
       }
   },
   {

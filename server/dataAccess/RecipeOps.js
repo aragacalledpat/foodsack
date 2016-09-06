@@ -12,7 +12,6 @@ class RecipeOps {
     
     MongoClient.connect(url, function(err, db) {
       assert.equal(null, err);
-      console.log("Connected successfully to server");
       var collection = db.collection('recipes');
 
       collection.find().toArray(function(err,recipes){
@@ -32,10 +31,29 @@ class RecipeOps {
     
     MongoClient.connect(url, function(err, db) {
       assert.equal(null, err);
-      console.log("Connected successfully to server");
       var collection = db.collection('recipes');
 
       collection.insertOne(recipe, function(err, result){
+        deferred.resolve(result);
+      })
+
+      db.close();
+    });
+    
+    return deferred.promise;
+  }
+  
+  updateRecipe(recipe)
+  {
+    var deferred = q.defer();
+    
+    MongoClient.connect(url, function(err, db) {
+      assert.equal(null, err);
+      var collection = db.collection('recipes');
+      recipe._id = new mongodb.ObjectID(recipe._id);
+      
+      collection.updateOne({_id: recipe._id},{$set: recipe},function(err, result){
+        console.log("updated!");
         deferred.resolve(result);
       })
 
@@ -50,10 +68,6 @@ class RecipeOps {
     var deferred = q.defer();
     
     MongoClient.connect(url, function(err, db) {
-      assert.equal(null, err);
-      console.log("Connected successfully to server");
-      console.log("trying to delete something!");
-      console.log(id)
       var collection = db.collection('recipes');
 
       collection.deleteOne({ "_id" : new mongodb.ObjectID(id)},function(err, results){
