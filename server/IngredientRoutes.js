@@ -37,9 +37,15 @@ const IngredientRoutes = [
   },
   {
       method: 'DELETE',
-      path: apiPath,
+      path: apiPath + '/{ingredientId}',
       handler: function (request, reply){
-        return reply({message : "deleted ingredient!"});
+        
+        var id = encodeURIComponent(request.params.ingredientId)
+        
+        IngredientService.deleteIngredient(id).then(function(data){
+            return reply(data);
+        })
+      
       }
   }
 ]

@@ -22,6 +22,16 @@ class IngredientService {
     
     return deferred.promise;
   }
+  
+  deleteIngredient(id)
+  {
+    var deferred = q.defer()    
+    IngredientOps.deleteIngredient(id).then(function(result){
+      deferred.resolve(result);
+    })
+    
+    return deferred.promise;
+  }
 }
 
 module.exports = new IngredientService();
