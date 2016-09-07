@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeService } from '../shared/recipe.service';
 import { Recipe } from '../shared/Recipe';
-import { Router, ROUTER_DIRECTIVES } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'recipe-list',
@@ -20,7 +20,6 @@ import { Router, ROUTER_DIRECTIVES } from '@angular/router';
       </li>
     </ul>
   `,
-    directives: [ROUTER_DIRECTIVES],
     providers: [RecipeService]
 })
 

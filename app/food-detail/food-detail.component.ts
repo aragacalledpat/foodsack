@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { RecipeListComponent } from '../recipe-list/recipeList.component';
 import { Recipe } from '../shared/Recipe';
 import { RecipeService } from '../shared/recipe.service';
-import { ActivatedRoute, Router ,ROUTER_DIRECTIVES } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'food-detail',
@@ -48,7 +47,6 @@ import { ActivatedRoute, Router ,ROUTER_DIRECTIVES } from '@angular/router';
       </div>
     </div>
   `,
-    directives: [RecipeListComponent,ROUTER_DIRECTIVES],
     providers: [RecipeService]
 })
 
