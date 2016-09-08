@@ -63,7 +63,10 @@ export class FoodDetailComponent {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
-      this.recipe = this.recipeService.getRecipe(this.id);
+      this.recipeService.getRecipe(this.id).then(_recipe => {
+        console.log("got the recipe!");
+        this.recipe = _recipe;
+      });
     });
   }
 
@@ -77,8 +80,10 @@ export class FoodDetailComponent {
 
   delete()
   {
-    this.recipeService.deleteRecipe(this.recipe);
-    this.router.navigate(['foodsack']);
+    this.recipeService.deleteRecipe(this.recipe).then(() => {
+          this.router.navigate(['foodsack']);
+    });
+
   }
 
 }

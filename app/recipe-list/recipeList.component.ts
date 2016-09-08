@@ -34,7 +34,9 @@ export class RecipeListComponent implements OnInit {
   }
   
   getRecipes(){
-    this.recipes = this.recipeService.getRecipes();
+    this.recipeService.getRecipes().then(data => {
+      this.recipes = data;
+    });
   }
   
   onSelect(recipe: Recipe){

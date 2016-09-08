@@ -34,7 +34,7 @@ class RecipeOps {
       var collection = db.collection('recipes');
 
       collection.insertOne(recipe, function(err, result){
-        deferred.resolve(result);
+        deferred.resolve(recipe);
       })
 
       db.close();
@@ -54,7 +54,7 @@ class RecipeOps {
       
       collection.updateOne({_id: recipe._id},{$set: recipe},function(err, result){
         console.log("updated!");
-        deferred.resolve(result);
+        deferred.resolve(recipe);
       })
 
       db.close();

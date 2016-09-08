@@ -1,7 +1,7 @@
 import { IngredientAmount } from './IngredientAmount'
 
 export class Recipe {
-  _id: number;
+  _id: string;
   name: string;
   ingredients:Array<IngredientAmount>;
   directions:string;

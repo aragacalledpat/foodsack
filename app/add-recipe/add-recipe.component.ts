@@ -129,10 +129,13 @@ export class AddRecipeComponent {
 
   loadEditRecipe()
   {
-    var fromService = this.recipeService.getRecipe(this.route.snapshot.params["id"]);
+    var fromService
+    this.recipeService.getRecipe(this.route.snapshot.params["id"]).then(recipe => {
+        fromService = recipe;
+        //stupid hack to make a deep copy.
+        this.recipe = JSON.parse(JSON.stringify(fromService));
+    });
 
-    //stupid hack to make a deep copy.
-    this.recipe = JSON.parse(JSON.stringify(fromService));
   }
 
   goHome()
@@ -162,13 +165,17 @@ export class AddRecipeComponent {
 
     if(this.addMode)
     {
-      this.recipeService.createRecipe(this.recipe);
+      this.recipeService.createRecipe(this.recipe).then(() => {
+            this.goHome();
+      });
     }
     else
     {
-        this.recipeService.updateRecipe(this.recipe);
+        this.recipeService.updateRecipe(this.recipe).then(() => {
+              this.goHome();
+        });
     }
-    this.goHome();
+
   }
 
 }
