@@ -46,7 +46,7 @@ export class IngredientListComponent implements OnInit {
   }
 
   getIngredients(){
-    this.ingredients = this.ingredientService.getIngredients();
+    this.ingredientService.getIngredients().then(data => this.ingredients = data);
   }
 
   add()

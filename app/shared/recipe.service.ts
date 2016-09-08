@@ -12,7 +12,7 @@ export class RecipeService {
   getRecipe(id: number){
     for(var i = 0; i < RECIPES.length; i++)
     {
-      if(RECIPES[i].id == id) { return RECIPES[i] }
+      if(RECIPES[i]._id == id) { return RECIPES[i] }
     }
   }
 
@@ -20,7 +20,7 @@ export class RecipeService {
   {
     for(var i = 0; i < RECIPES.length; i++)
     {
-      if(RECIPES[i].id == recipe.id)
+      if(RECIPES[i]._id == recipe._id)
       {
          RECIPES[i] = recipe;
       }
@@ -32,14 +32,14 @@ export class RecipeService {
     var highestId = 0;
     for(var i = 0; i < RECIPES.length; i++)
     {
-      if(RECIPES[i].id > highestId)
+      if(RECIPES[i]._id > highestId)
       {
-         highestId = RECIPES[i].id;
+         highestId = RECIPES[i]._id;
       }
     }
 
 
-    recipe.id = highestId + 1;
+    recipe._id = highestId + 1;
     RECIPES.push(recipe);
   }
 
@@ -47,7 +47,7 @@ export class RecipeService {
   {
     for(var i = 0; i < RECIPES.length; i++)
     {
-      if(RECIPES[i].id == recipe.id)
+      if(RECIPES[i]._id == recipe._id)
       {
          RECIPES.splice(i,1);
       }
