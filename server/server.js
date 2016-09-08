@@ -9,7 +9,12 @@ const allRoutes = IngredientRoutes
                     .concat(RecipeRoutes);
 
 // Create a server with a host and port
-const server = new Hapi.Server('0.0.0.0', 3000, {cors:true});
+const server = new Hapi.Server();
+server.connection({ 
+    host: '0.0.0.0', 
+    port: 3000,
+    routes: {cors: true} 
+});
 
 for(let route of allRoutes)
 {
