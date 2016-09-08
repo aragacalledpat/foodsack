@@ -34,6 +34,14 @@ export class IngredientService {
   }
 
   deleteIngredient(ingredient: Ingredient){
+    
+    return this.http
+      .delete(this.ingredientApiUrl + "/" + ingredient._id)
+        .toPromise()
+        .then(res => {
+          return res.json()
+        })
+    /*
     for(var i = 0; i <INGREDIENTS.length;i++)
     {
       if(INGREDIENTS[i].name == ingredient.name)
@@ -41,5 +49,6 @@ export class IngredientService {
         INGREDIENTS.splice(i,1);
       }
     }
+    */
   }
 }

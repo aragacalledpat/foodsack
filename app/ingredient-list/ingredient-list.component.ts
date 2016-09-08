@@ -62,7 +62,15 @@ export class IngredientListComponent implements OnInit {
 
   deleteIngredient(ingredient:Ingredient)
   {
-    this.ingredientService.deleteIngredient(ingredient);
+    this.ingredientService.deleteIngredient(ingredient).then(() => {
+      for(var i = 0; i <this.ingredients.length;i++)
+      {
+        if(this.ingredients[i]._id == ingredient._id)
+        {
+          this.ingredients.splice(i,1);
+        }
+      }
+    });
   }
 
 }
