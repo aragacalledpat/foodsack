@@ -36,7 +36,7 @@ class IngredientOps {
       var collection = db.collection('ingredients');
 
       collection.insertOne(ingredient, function(err, result){
-        deferred.resolve(result);
+        deferred.resolve(ingredient);
       })
 
       db.close();

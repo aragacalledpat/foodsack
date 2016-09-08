@@ -46,12 +46,17 @@ export class IngredientListComponent implements OnInit {
   }
 
   getIngredients(){
-    this.ingredientService.getIngredients().then(data => this.ingredients = data);
+    this.ingredientService.getIngredients()
+      .then(data => {
+        this.ingredients = data
+    });
   }
 
   add()
   {
-    this.ingredientService.createIngredient(this.newIngredient);
+    this.ingredientService.createIngredient(this.newIngredient).then((data) => {
+      this.ingredients.push(data)
+    });
     this.newIngredient = new Ingredient();
   }
 

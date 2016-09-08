@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { APIURL } from './constants'
@@ -10,6 +10,7 @@ import { Ingredient } from './Ingredient'
 export class IngredientService {
   
   ingredientApiUrl:string
+  private headers = new Headers({'Content-Type': 'application/json'});
   
   constructor(private http: Http) { 
   this.ingredientApiUrl = APIURL + "/ingredients";
@@ -18,11 +19,18 @@ export class IngredientService {
   getIngredients(): Promise<Ingredient[]>{
     return this.http.get(this.ingredientApiUrl)
       .toPromise()
-      .then(response => response.json().data as Ingredient[])
+      .then(response => {
+        return response.json() as Ingredient[]  
+      })
   }
 
-  createIngredient(ingredient: Ingredient){
-    INGREDIENTS.push(ingredient);
+  createIngredient(ingredient: Ingredient) {
+    return this.http
+      .post(this.ingredientApiUrl, ingredient,this.headers)
+      .toPromise()
+      .then(res => {
+        return res.json() as Ingredient;
+      })
   }
 
   deleteIngredient(ingredient: Ingredient){

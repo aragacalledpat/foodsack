@@ -111,7 +111,11 @@ export class AddRecipeComponent {
     {
     this.recipe = new Recipe();
     this.ingredientAmount = new IngredientAmount();
-    this.ingredientService.getIngredients().then(data => this.ingredients = data);
+    
+    this.ingredientService.getIngredients()
+      .then(data => {
+        this.ingredients = data
+    });
     
     this.measurements = this.measurementService.getMeasurements();
     this.addMode = (!this.route.snapshot.params.hasOwnProperty('id'));
