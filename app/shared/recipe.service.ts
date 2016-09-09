@@ -8,35 +8,29 @@ import { Recipe } from './Recipe'
 
 @Injectable()
 export class RecipeService {
-  
+
   recipeApiUrl:string
   private headers = new Headers({'Content-Type': 'application/json'});
-  
-  constructor(private http: Http) { 
+
+  constructor(private http: Http) {
     this.recipeApiUrl = APIURL + "/recipes";
-  } 
+  }
 
   getRecipes(): Promise<Recipe[]>{
     return this.http.get(this.recipeApiUrl)
       .toPromise()
       .then(response => {
-        console.log("getting all recipes");
-        console.log(response.json());
-        return response.json() as Recipe[]  
+        return response.json() as Recipe[]
       })
   }
-  
+
   getRecipe(id)
   {
     return this.getRecipes().then(results =>{
-      console.log("super service time 1");
-      console.log(results);
       for(var i =0; i<results.length;i++)
       {
         if(results[i]._id == id)
         {
-          console.log("super service time 2");
-          console.log(results[i]);
           return results[i];
         }
       }
@@ -71,15 +65,6 @@ export class RecipeService {
         .then(res => {
           return res.json()
         })
-    /*
-    for(var i = 0; i < RECIPES.length; i++)
-    {
-      if(RECIPES[i]._id == recipe._id)
-      {
-         RECIPES.splice(i,1);
-      }
-    }
-    */
   }
 
 }

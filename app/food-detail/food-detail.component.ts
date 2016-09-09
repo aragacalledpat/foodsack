@@ -20,7 +20,7 @@ import { ActivatedRoute, Router } from '@angular/router';
               <div class="col-md-4">
                 <h3>Ingredients</h3>
                 <ul class="list-group">
-                  <li class="list-group-item" 
+                  <li class="list-group-item"
                       *ngFor="let ingredientAmount of recipe.ingredients">
                   {{ingredientAmount.amount}} {{ingredientAmount.measurement.name}} {{ingredientAmount.ingredient.name}}
                   </li>
@@ -36,7 +36,7 @@ import { ActivatedRoute, Router } from '@angular/router';
               </div>
             </div>
             <div class="row">
-              
+
             </div>
             <div class="row">
               <button class="btn btn-success" (click)="edit()">Edit</button>
@@ -62,9 +62,8 @@ export class FoodDetailComponent {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      this.id = +params['id'];
+      this.id = params['id'];
       this.recipeService.getRecipe(this.id).then(_recipe => {
-        console.log("got the recipe!");
         this.recipe = _recipe;
       });
     });
