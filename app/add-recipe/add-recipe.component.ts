@@ -86,7 +86,7 @@ import { MeasurementService } from '../shared/measurement.service'
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" (click)="goHome()">Close</button>
-          <button type="submit" class="btn btn-primary" (click)="submit()">{{addMode ? 'Add' : 'Edit'}} Recipe</button>
+          <button type="submit" class="btn btn-primary" (click)="submit()">{{addMode ? 'Add' : 'Save'}} Recipe</button>
         </div>
       </div>
     </div>
