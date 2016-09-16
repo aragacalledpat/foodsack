@@ -45,43 +45,6 @@ import { MeasurementService } from '../shared/measurement.service'
                           type="text"
                />
             </div>
-
-            <div class="form-group">
-              <div class="row">
-                <div class="col-md-4">
-                  <ul class="list-group">
-                    <li class="list-group-item" *ngFor="let ingredientAmount of recipe.ingredients">
-                    <span>{{ingredientAmount.amount}} {{ingredientAmount.measurement.name}} {{ingredientAmount.ingredient.name}}</span>
-                     <a style="cursor: pointer;" (click)="removeIngredient(ingredientAmount)"><span class="glyphicon glyphicon-minus pull-right" aria-hidden="true"></span></a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-md-2">
-                  <label for="number">#</label>
-                  <input type="number" name="number" [(ngModel)]="ingredientAmount.amount" class="form-control">
-                </div>
-                <div class="col-md-3">
-                  <label for="unit">Unit</label>
-                  <select name="unit" class="form-control" [(ngModel)]="ingredientAmount.measurement">
-                    <option *ngFor="let measurement of measurements" [ngValue]="measurement">{{measurement.name}}</option>
-                  </select>
-                </div>
-                <div class="col-md-3">
-                  <label for="newIngredient">Ingredient</label>
-                  <select name="newIngredient" class="form-control" [(ngModel)]="ingredientAmount.ingredient">
-                    <option *ngFor="let ingredient of ingredients"
-                            [ngValue]="ingredient">
-                    {{ingredient.name}}
-                    </option>
-                  </select>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                    <button class="btn btn-default pull-right" (click)="addIngredient()">Add Ingredient</button>
-                </div>
-              </div>
-            </div>
           </form>
         </div>
         <div class="modal-footer">
