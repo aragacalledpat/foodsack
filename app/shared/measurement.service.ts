@@ -12,7 +12,9 @@ export class MeasurementService {
     {id:3, name: "Tablespoon"},
     {id: 4, name: "Cup"},
     {id: 5, name: "Can"},
-  {id: 6, name: "Ounces"}];
+  {id: 6, name: "Ounces"},
+  {id: 7, name: "Cloves"}
+];
     return Measurements;
   }
 }
