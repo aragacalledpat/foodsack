@@ -20,6 +20,9 @@ import { ActivatedRoute, Router } from '@angular/router';
               <div class="col-md-4">
                 <h3>Ingredients</h3>
                 <ul class="list-group">
+                  <li class="list-group-item">
+                    <a (click)="editIngredients()">Edit Ingredients</a>
+                  </li>
                   <li class="list-group-item"
                       *ngFor="let ingredientAmount of recipe.ingredients">
                   {{ingredientAmount.amount}} {{ingredientAmount.measurement.name}} {{ingredientAmount.ingredient.name}}
@@ -83,6 +86,11 @@ export class FoodDetailComponent {
           this.router.navigate(['foodsack']);
     });
 
+  }
+  
+  editIngredients()
+  {
+    this.router.navigate(['foodsack','food',this.id,'editIngredients']);
   }
 
 }

@@ -26,7 +26,7 @@ const routes: Routes = [
     component: AddRecipeComponent
   },
   {
-    path: 'foodsack/food/:id/editIngredient',
+    path: 'foodsack/food/:id/editIngredients',
     component: EditIngredientsComponent
   },
   {
