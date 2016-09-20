@@ -8,7 +8,7 @@
     "tsc": "tsc --outDir dist",
     "tsc:w": "tsc --outDir dist -w",
     "typings": "typings",
-    "scss": "node-sass -r app -o dist",
+    "scss": "node-sass -r app -o dist && cat dist/**/*.css > styles.css",
     "dist" : "npm run tsc && npm run scss && mkdir foodsack-client && cp index.html foodsack-client/ && cp -R dist foodsack-client/dist"
   },
   "license": "ISC",

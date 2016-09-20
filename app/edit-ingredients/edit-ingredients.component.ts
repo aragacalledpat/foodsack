@@ -12,7 +12,7 @@ import { MeasurementService } from '../shared/measurement.service'
 @Component({
   selector: 'edit-ingredients',
   template: `
-  <div #editIngredientsModal class="modal show" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="overflow-y:auto">
+  <div #editIngredientsModal class="modal show exit-ingredients" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="overflow-y:auto">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -57,12 +57,14 @@ import { MeasurementService } from '../shared/measurement.service'
           </div>
           <div class="row">
             <div class="col-md-6 col-offset-3">
+            <!--
               <ul class="list-group">
                 <li class="list-group-item" *ngFor="let ingredientAmount of recipe.ingredients">
                 <span>{{ingredientAmount.amount}} {{ingredientAmount.measurement.name}} {{ingredientAmount.ingredient.name}}</span>
                  <a style="cursor: pointer;" (click)="removeIngredient(ingredientAmount)"><span class="glyphicon glyphicon-minus pull-right" aria-hidden="true"></span></a>
                 </li>
               </ul>
+              -->
             </div>
           </div>
                   
