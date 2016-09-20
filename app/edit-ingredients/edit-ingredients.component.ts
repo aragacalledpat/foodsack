@@ -1,3 +1,4 @@
+///<reference path="../../typings/globals/typeahead/index.d.ts"/>
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Recipe } from '../shared/Recipe'
@@ -20,30 +21,39 @@ import { MeasurementService } from '../shared/measurement.service'
         </div>
         <div class="modal-body">
           <form>
+          <!--
           <div class="row" style="margin-bottom:10px;">
-          <div class="col-md-3">
-            <label for="number">#</label>
-            <input type="number" name="number" [(ngModel)]="ingredientAmount.amount" class="form-control">
+            <div class="col-md-3">
+              <label for="number">#</label>
+              <input type="number" name="number" [(ngModel)]="ingredientAmount.amount" class="form-control">
+            </div>
+            <div class="col-md-3">
+              <label for="unit">Unit</label>
+              <select name="unit" class="form-control" [(ngModel)]="ingredientAmount.measurement">
+                <option *ngFor="let measurement of measurements" [ngValue]="measurement">{{measurement.name}}</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="newIngredient">Ingredient</label>
+              <select name="newIngredient" class="form-control" [(ngModel)]="ingredientAmount.ingredient">
+                <option *ngFor="let ingredient of ingredients"
+                        [ngValue]="ingredient">
+                {{ingredient.name}}
+                </option>
+              </select>
+            </div>
+            <div class="col-md-3">
+                <label style="color:white" for="newIngredient">Confirm</label>
+                <button class="btn btn-default" (click)="addIngredient()">Add Ingredient</button>
+            </div>
           </div>
-          <div class="col-md-3">
-            <label for="unit">Unit</label>
-            <select name="unit" class="form-control" [(ngModel)]="ingredientAmount.measurement">
-              <option *ngFor="let measurement of measurements" [ngValue]="measurement">{{measurement.name}}</option>
-            </select>
-          </div>
-          <div class="col-md-3">
-            <label for="newIngredient">Ingredient</label>
-            <select name="newIngredient" class="form-control" [(ngModel)]="ingredientAmount.ingredient">
-              <option *ngFor="let ingredient of ingredients"
-                      [ngValue]="ingredient">
-              {{ingredient.name}}
-              </option>
-            </select>
-          </div>
-          <div class="col-md-3">
-              <label style="color:white" for="newIngredient">Confirm</label>
-              <button class="btn btn-default" (click)="addIngredient()">Add Ingredient</button>
-          </div>
+          -->
+          <div class="row">
+            <div class="col-md-8">
+              <div id="the-basics">
+                <input class="typeahead form-control" type="text" placeholder="Add Ingredient">
+              </div>
+            </div>
           </div>
           <div class="row">
             <div class="col-md-6 col-offset-3">
@@ -68,7 +78,7 @@ import { MeasurementService } from '../shared/measurement.service'
   providers: [RecipeService, IngredientService, MeasurementService]
 })
 
-export class EditIngredientsComponent {
+export class EditIngredientsComponent implements AfterViewInit{
 
   recipe:Recipe
   ingredients: Ingredient[]
@@ -90,18 +100,59 @@ export class EditIngredientsComponent {
     });
     
     this.measurements = this.measurementService.getMeasurements();
-    /*
-    this.addMode = (!this.route.snapshot.params.hasOwnProperty('id'));
-
-    if(!this.addMode)
-    {
-      this.loadEditRecipe();
-    }
-    */
     this.recipeService.getRecipe(this.route.snapshot.params["id"]).then(_recipe => {
         //stupid hack to make a deep copy.
         this.recipe = JSON.parse(JSON.stringify(_recipe));
-        console.log(this.recipe);
+    });
+    
+    var stuff = []
+    
+    
+  }
+  
+  ngAfterViewInit() {
+    var substringMatcher = function(strs) {
+  return function findMatches(q, cb) {
+    var matches
+    var substrRegex;
+
+    // an array that will be populated with substring matches
+    matches = [];
+
+    // regex used to determine if a string contains the substring `q`
+    substrRegex = new RegExp(q, 'i');
+
+    // iterate through the pool of strings and for any string that
+    // contains the substring `q`, add it to the `matches` array
+    $.each(strs, function(i, str) {
+      if (substrRegex.test(str)) {
+        matches.push(str);
+      }
+    });
+
+    cb(matches);
+  };
+  };
+
+  var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
+  'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
+  'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+  'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
+  'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+  'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+  'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
+  'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+  'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+  ];
+
+  $('#the-basics .typeahead').typeahead({
+      hint: true,
+      highlight: true,
+      minLength: 1
+    },
+    {
+      name: 'states',
+      source: substringMatcher(states)
     });
   }
 
