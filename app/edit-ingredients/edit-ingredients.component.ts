@@ -12,7 +12,7 @@ import { MeasurementService } from '../shared/measurement.service'
 @Component({
   selector: 'edit-ingredients',
   template: `
-  <div #editIngredientsModal class="modal show exit-ingredients" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="overflow-y:auto">
+  <div #editIngredientsModal class="modal show edit-ingredients" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="overflow-y:auto">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -67,7 +67,7 @@ import { MeasurementService } from '../shared/measurement.service'
               -->
             </div>
           </div>
-                  
+
           </form>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" (click)="goHome()">Close</button>
@@ -95,23 +95,23 @@ export class EditIngredientsComponent implements AfterViewInit{
     {
     this.recipe = new Recipe();
     this.ingredientAmount = new IngredientAmount();
-    
+
     this.ingredientService.getIngredients()
       .then(data => {
         this.ingredients = data
     });
-    
+
     this.measurements = this.measurementService.getMeasurements();
     this.recipeService.getRecipe(this.route.snapshot.params["id"]).then(_recipe => {
         //stupid hack to make a deep copy.
         this.recipe = JSON.parse(JSON.stringify(_recipe));
     });
-    
+
     var stuff = []
-    
-    
+
+
   }
-  
+
   ngAfterViewInit() {
     var substringMatcher = function(strs) {
   return function findMatches(q, cb) {

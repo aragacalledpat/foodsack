@@ -6,4 +6,5 @@ node_modules
 jspm_packages
 bower_components
 .htaccess
-.npm-debug.log                                                        
+.npm-debug.log
+styles.css                                                        
