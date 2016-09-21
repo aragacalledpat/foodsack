@@ -51,20 +51,19 @@ import { MeasurementService } from '../shared/measurement.service'
           <div class="row">
             <div class="col-md-8">
               <div id="the-basics">
-                <input class="typeahead form-control" type="text" placeholder="Add Ingredient">
+                <input name="newIngredient" class="typeahead form-control" type="text" placeholder="Add Ingredient">
               </div>
             </div>
           </div>
           <div class="row">
+          {{ingredientAmount.ingredient?.name}}
             <div class="col-md-6 col-offset-3">
-            <!--
               <ul class="list-group">
                 <li class="list-group-item" *ngFor="let ingredientAmount of recipe.ingredients">
-                <span>{{ingredientAmount.amount}} {{ingredientAmount.measurement.name}} {{ingredientAmount.ingredient.name}}</span>
+                <span>{{ingredientAmount?.amount}} {{ingredientAmount.measurement?.name}} {{ingredientAmount.ingredient.name}}</span>
                  <a style="cursor: pointer;" (click)="removeIngredient(ingredientAmount)"><span class="glyphicon glyphicon-minus pull-right" aria-hidden="true"></span></a>
                 </li>
               </ul>
-              -->
             </div>
           </div>
 
@@ -106,9 +105,6 @@ export class EditIngredientsComponent implements AfterViewInit{
         //stupid hack to make a deep copy.
         this.recipe = JSON.parse(JSON.stringify(_recipe));
     });
-
-    var stuff = []
-
 
   }
 
@@ -156,6 +152,17 @@ export class EditIngredientsComponent implements AfterViewInit{
       name: 'states',
       source: substringMatcher(states)
     });
+
+    let selectionHandler:(eventObject: JQueryEventObject) => any  = (ev) =>
+    {
+        let selected =  (<HTMLInputElement>ev.target).value;
+        this.ingredientAmount.ingredient = new Ingredient();
+        this.ingredientAmount.ingredient.name = selected;
+        this.addIngredient();
+
+    }
+
+    $('#the-basics .typeahead').bind('typeahead:select', selectionHandler);
   }
 
   loadEditRecipe()

@@ -25,7 +25,7 @@ import { ActivatedRoute, Router } from '@angular/router';
                   </li>
                   <li class="list-group-item"
                       *ngFor="let ingredientAmount of recipe.ingredients">
-                  {{ingredientAmount.amount}} {{ingredientAmount.measurement.name == 'None' ? '': ingredientAmount.measurement.name }} {{ingredientAmount.ingredient.name}}
+                  {{ingredientAmount.amount}} {{ingredientAmount.measurement?.name }} {{ingredientAmount.ingredient.name}}
                   </li>
                 </ul>
               </div>
@@ -87,7 +87,7 @@ export class FoodDetailComponent {
     });
 
   }
-  
+
   editIngredients()
   {
     this.router.navigate(['foodsack','food',this.id,'editIngredients']);
