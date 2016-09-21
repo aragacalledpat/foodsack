@@ -16,7 +16,7 @@ import { NgForm }    from '@angular/forms';
         </ul>
         <div>
           <form #newIngredientForm="ngForm">
-          <input name="name" [(ngModel)]="newIngredient.name" (keyup.enter)="add()" type="text" class="form-control" required>
+          <input name="name" [(ngModel)]="newIngredient.name" type="text" class="form-control" required>
           <button class="btn btn-success" (click)="add()" [disabled]="!newIngredientForm.form.valid">Add Ingredient</button>
           </form>
         </div>
@@ -54,6 +54,7 @@ export class IngredientListComponent implements OnInit {
 
   add()
   {
+    console.log("in add!");
     this.ingredientService.createIngredient(this.newIngredient).then((data) => {
       this.ingredients.push(data)
     });
