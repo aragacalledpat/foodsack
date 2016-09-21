@@ -150,7 +150,17 @@ export class EditIngredientsComponent implements AfterViewInit{
     {
         let selected =  (<HTMLInputElement>ev.target).value;
         this.ingredientAmount.ingredient = new Ingredient();
-        this.ingredientAmount.ingredient.name = selected;
+
+        for(var i=0; i< this.ingredients.length;i++)
+        {
+          if(this.ingredients[i].name == selected)
+          {
+            this.ingredientAmount.ingredient = this.ingredients[i];
+            console.log(this.ingredients[i]);
+          }
+        }
+
+        //this.ingredientAmount.ingredient.name = selected;
         this.addIngredient();
 
     }
