@@ -3,7 +3,7 @@
 input=ingredients
 cmd=prog
 
-while read line
+while read -r line
 do
   node seedDatabase.js $line
 done < "$input"
