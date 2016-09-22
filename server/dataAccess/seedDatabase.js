@@ -11,7 +11,8 @@ process.argv.forEach(function (val, index, array) {
 
 function fn(ingredient)
 {
-  IngredientOps.insertIngredient(ingredient).then(function(result){
+  var ingredientObj = {"name": ingredient}
+  IngredientOps.insertIngredient(ingredientObj).then(function(result){
     console.log("added ingredient: " + ingredient);
   })
 }
