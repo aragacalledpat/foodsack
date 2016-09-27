@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Recipe } from '../shared/Recipe'
 import { Ingredient } from '../shared/Ingredient'
@@ -11,7 +11,7 @@ import { MeasurementService } from '../shared/measurement.service'
 @Component({
   selector: 'add-recipe',
   template: `
-  <div #addModal class="modal show" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="overflow-y:auto">
+  <div #addModal class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="overflow-y:auto">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -58,7 +58,7 @@ import { MeasurementService } from '../shared/measurement.service'
   providers: [RecipeService, IngredientService, MeasurementService]
 })
 
-export class AddRecipeComponent {
+export class AddRecipeComponent implements AfterViewInit {
 
   recipe:Recipe
   ingredients: Ingredient[]
@@ -89,6 +89,14 @@ export class AddRecipeComponent {
     }
 
   }
+  
+  ngAfterViewInit(){
+    $('#myModal').modal('show');
+  }
+  
+  ngOnDestroy() {
+  $('#myModal').modal('hide');
+}
 
   loadEditRecipe()
   {
@@ -129,12 +137,14 @@ export class AddRecipeComponent {
     if(this.addMode)
     {
       this.recipeService.createRecipe(this.recipe).then(() => {
+        $('#myModal').modal('hide');
             this.goHome();
       });
     }
     else
     {
         this.recipeService.updateRecipe(this.recipe).then(() => {
+          $('#myModal').modal('hide');
               this.goHome();
         });
     }

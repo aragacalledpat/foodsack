@@ -7,16 +7,14 @@ import { Router } from '@angular/router';
   selector: 'recipe-list',
   template: `
     <ul class="nav nav-pills nav-stacked">
-      <li>
-        <a (click)="goToAdd()">
+      <li class="nav-item">
+        <a class="nav-link" (click)="goToAdd()">
           <span class="glyphicon glyphicon-plus"></span>
           Add
         </a>
       </li>
-      <li *ngFor="let recipe of recipes" 
-          (click)="onSelect(recipe)"
-          >
-          <a>{{recipe.name}}</a>
+      <li class="nav-item" *ngFor="let recipe of recipes" (click)="onSelect(recipe)">
+          <a class="nav-link">{{recipe.name}}</a>
       </li>
     </ul>
   `,
