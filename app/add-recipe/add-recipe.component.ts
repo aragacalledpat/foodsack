@@ -1,3 +1,4 @@
+///<reference path="../../typings/globals/bootstrap/index.d.ts"/>
 import { Component, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Recipe } from '../shared/Recipe'
