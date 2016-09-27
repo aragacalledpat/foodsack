@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
     <ul class="nav nav-pills nav-stacked">
       <li class="nav-item">
         <a class="nav-link" (click)="goToAdd()">
-          <span class="glyphicon glyphicon-plus"></span>
+          <i class="fa fa-plus" aria-hidden="true"></i>
           Add
         </a>
       </li>
