@@ -61,7 +61,7 @@ import { MeasurementService } from '../shared/measurement.service'
               <ul class="list-group">
                 <li class="list-group-item" *ngFor="let ingredientAmount of recipe.ingredients">
                 <span>{{ingredientAmount?.amount}} {{ingredientAmount.measurement?.name}} {{ingredientAmount.ingredient.name}}</span>
-                 <a style="cursor: pointer;" (click)="removeIngredient(ingredientAmount)"><i class="fa fa-plus pull-minus" aria-hidden="true"></i></a>
+                 <a style="cursor: pointer;" (click)="removeIngredient(ingredientAmount)"><i class="fa fa-minus pull-right" aria-hidden="true"></i></a>
                 </li>
               </ul>
             </div>

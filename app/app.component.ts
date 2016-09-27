@@ -18,7 +18,7 @@ import { Component } from '@angular/core';
       </div>
       <!-- /.container-fluid -->
   </nav>
-  <div class="container">
+  <div class="container-fluid">
       <router-outlet></router-outlet>
   </div>
   `
