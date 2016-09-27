@@ -109,6 +109,8 @@ export class EditIngredientsComponent implements AfterViewInit{
   }
 
   ngAfterViewInit() {
+    
+      $('#myModal').modal('show');
     var substringMatcher = function(strs) {
   return function findMatches(q, cb) {
     var matches
@@ -175,6 +177,7 @@ export class EditIngredientsComponent implements AfterViewInit{
 
   goHome()
   {
+      $('#myModal').modal('hide');
     this.router.navigate(['foodsack']);
   }
 

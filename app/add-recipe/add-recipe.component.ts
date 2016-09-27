@@ -93,10 +93,6 @@ export class AddRecipeComponent implements AfterViewInit {
   ngAfterViewInit(){
     $('#myModal').modal('show');
   }
-  
-  ngOnDestroy() {
-  $('#myModal').modal('hide');
-}
 
   loadEditRecipe()
   {
@@ -111,6 +107,7 @@ export class AddRecipeComponent implements AfterViewInit {
 
   goHome()
   {
+    $('#myModal').modal('hide');
     this.router.navigate(['foodsack']);
   }
 
@@ -137,14 +134,12 @@ export class AddRecipeComponent implements AfterViewInit {
     if(this.addMode)
     {
       this.recipeService.createRecipe(this.recipe).then(() => {
-        $('#myModal').modal('hide');
             this.goHome();
       });
     }
     else
     {
         this.recipeService.updateRecipe(this.recipe).then(() => {
-          $('#myModal').modal('hide');
               this.goHome();
         });
     }
